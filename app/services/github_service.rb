@@ -31,6 +31,11 @@ class GithubService
     page.xpath('//*[@id="contributions-calendar"]/div[4]/span[2]').text
   end
 
+  def current_streak
+    page = Nokogiri::HTML(open("https://github.com/#{@current_user.nickname}"))
+    page.xpath('//*[@id="contributions-calendar"]/div[5]/span[2]').text
+  end
+
   private
 
     def parse(response)

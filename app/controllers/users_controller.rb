@@ -6,5 +6,6 @@ class UsersController < ApplicationController
     @followings = gs.following
     @contributions = gs.contributions
     @longest_streak = gs.longest_streak
+    @current_streak = gs.current_streak
   end
 end
