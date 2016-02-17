@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   def show
-    @starred = GithubService.new(current_user).starred_repos
+    gs = GithubService.new(current_user)
+    @starred = gs.starred_repos
+    @followers = gs.followers
   end
 end

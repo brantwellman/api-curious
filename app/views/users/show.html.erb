@@ -10,3 +10,9 @@
     <li><%= link_to star["name"], "https://github.com/#{star['owner']['login']}/#{star['name']}" %> Created By: <%= star["name"] %></li>
   <% end %>
 </ul>
+<h3>Each of your followers</h3>
+<ul>
+  <% @followers.each do |follower| %>
+    <li><%= link_to follower["login"], "https://github.com/#{follower["login"]}" %> </li>
+  <% end %>
+</ul>
