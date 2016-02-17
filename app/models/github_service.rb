@@ -10,4 +10,9 @@ class GithubService
     data = connection.get("/users/#{@current_user.nickname}/starred").body
     json = JSON.parse(data)
   end
+
+  def followers
+    data = connection.get("/users/#{@current_user.nickname}/followers").body
+    json = JSON.parse(data)
+  end
 end
