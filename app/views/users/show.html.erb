@@ -59,3 +59,10 @@
     <%= @current_streak %>
   </div>
 </div>
+
+<h3>My Organizations</h3>
+<ul>
+  <% @organizations.each do |org| %>
+    <li><%= org["login"] %></li>
+  <% end %>
+</ul>
