@@ -22,8 +22,13 @@ class GithubService
   end
 
   def contributions
-    @page = Nokogiri::HTML(open("https://github.com/#{@current_user.nickname}"))
-    @page.xpath("//*[@id='contributions-calendar']/div[3]/span[2]").text
+    page = Nokogiri::HTML(open("https://github.com/#{@current_user.nickname}"))
+    page.xpath("//*[@id='contributions-calendar']/div[3]/span[2]").text
+  end
+
+  def longest_streak
+    page = Nokogiri::HTML(open("https://github.com/#{@current_user.nickname}"))
+    page.xpath('//*[@id="contributions-calendar"]/div[4]/span[2]').text
   end
 
   private
