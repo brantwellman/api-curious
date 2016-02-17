@@ -7,5 +7,6 @@ class UsersController < ApplicationController
     @contributions = gs.contributions
     @longest_streak = gs.longest_streak
     @current_streak = gs.current_streak
+    @organizations = gs.organizations
   end
 end
