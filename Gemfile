@@ -11,7 +11,6 @@ gem 'figaro'
 gem 'pg'
 gem 'omniauth-github'
 gem 'faraday'
-gem 'pp'
 
 
 group :development, :test do
