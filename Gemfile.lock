@@ -231,6 +231,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  nokogiri
   omniauth-github
   pg
   pry

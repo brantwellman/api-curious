@@ -4,5 +4,6 @@ class UsersController < ApplicationController
     @starred = gs.starred_repos
     @followers = gs.followers
     @followings = gs.following
+    @contributions = gs.contributions
   end
 end
