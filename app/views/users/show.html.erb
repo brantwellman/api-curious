@@ -61,4 +61,8 @@
 </div>
 
 <h3>My Organizations</h3>
-<% @organizations %>
+<ul>
+  <% @organizations.each do |org| %>
+    <li><%= org["login"] %></li>
+  <% end %>
+</ul>
