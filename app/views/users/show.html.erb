@@ -1,24 +1,44 @@
-<h1>Your Dashboard</h1>
-<ul>
-  <li><%= current_user.name %></li>
-  <li><%= image_tag current_user.image %></li>
-  <li><%= current_user.nickname %></li>
-</ul>
-<h3>Each of your starred Repos</h3>
-<ul>
-  <% @starred.each do |star| %>
-    <li><%= link_to star["name"], "https://github.com/#{star['owner']['login']}/#{star['name']}" %> Created By: <%= star["name"] %></li>
-  <% end %>
-</ul>
-<h3>Each of your followers</h3>
-<ul>
-  <% @followers.each do |follower| %>
-    <li><%= link_to follower["login"], "https://github.com/#{follower["login"]}" %> </li>
-  <% end %>
-</ul>
-<h3>Everyone following you</h3>
-<ul>
-  <% @followings.each do |following| %>
-    <li><%= link_to following["login"], "https://github.com/#{following["login"]}" %></li>
-  <% end %>
-</ul>
+<div class="container center">
+  <h1><%= current_user.name %>'s' Dashboard</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <ul>
+      <img class="gravatar center-block">
+        <%= image_tag current_user.image %>
+      </img>
+      <h3><%= current_user.name %></h3>
+      <h4><%= current_user.nickname %></h4>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    <h3><%= @starred.count %> Starred Repos</h3>
+    <ul>
+      <% @starred.each do |star| %>
+        <li><%= link_to star["name"], "https://github.com/#{star['owner']['login']}/#{star['name']}" %></li>Created By: <%= star["owner"]['login'] %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-2">
+    <h3><%= @followers.count %> total followers</h3>
+    <ul>
+      <% @followers.each do |follower| %>
+        <li><%= link_to follower["login"], "https://github.com/#{follower["login"]}" %> </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-2">
+    <h3><%= @followings.count %> you are following</h3>
+    <ul>
+      <% @followings.each do |following| %>
+        <li><%= link_to following["login"], "https://github.com/#{following["login"]}" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -8,18 +8,21 @@ class GithubService
   end
 
   def starred_repos
-    data = connection.get("/users/#{@current_user.nickname}/starred").body
-    json = JSON.parse(data)
+    parse(connection.get("/users/#{@current_user.nickname}/starred"))
   end
 
   def followers
-    data = connection.get("/users/#{@current_user.nickname}/followers").body
-    json = JSON.parse(data)
+    parse(connection.get("/users/#{@current_user.nickname}/followers"))
   end
 
   def following
-    data = connection.get("users/#{@current_user.nickname}/following").body
-    json = JSON.parse(data)
-    # binding.pry
+    parse(connection.get("users/#{@current_user.nickname}/following"))
   end
+
+
+  private
+
+    def parse(response)
+      JSON.parse(response.body)
+    end
 end
