@@ -16,3 +16,9 @@
     <li><%= link_to follower["login"], "https://github.com/#{follower["login"]}" %> </li>
   <% end %>
 </ul>
+<h3>Everyone following you</h3>
+<ul>
+  <% @followings.each do |following| %>
+    <li><%= link_to following["login"], "https://github.com/#{following["login"]}" %></li>
+  <% end %>
+</ul>
