@@ -1,4 +1,12 @@
 <h1>Your Dashboard</h1>
-<%= current_user.name %>
-<%= current_user.image %>
-<%= current_user.nickname %>
+<ul>
+  <li><%= current_user.name %></li>
+  <li><%= image_tag current_user.image %></li>
+  <li><%= current_user.nickname %></li>
+</ul>
+<h3>Each of your starred Repos</h3>
+<ul>
+  <% @starred.each do |star| %>
+    <li><%= link_to star["name"], "https://github.com/#{star['owner']['login']}/#{star['name']}" %> Created By: <%= star["name"] %></li>
+  <% end %>
+</ul>
