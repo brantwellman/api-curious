@@ -5,8 +5,8 @@
 <div class="row">
   <div class="col-md-3">
     <ul>
-      <img class="gravatar center-block">
-        <%= image_tag current_user.image %>
+      <img class="center-block">
+        <%= image_tag current_user.image, class: "gravatar" %>
       </img>
       <h3><%= current_user.name %></h3>
       <h4><%= current_user.nickname %></h4>
@@ -41,4 +41,9 @@
       <% end %>
     </ul>
   </div>
+</div>
+
+<div class="col-md-2">
+  <h3>Contributions</h3>
+  <%= @contributions %>
 </div>

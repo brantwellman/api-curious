@@ -11,6 +11,7 @@ gem 'figaro'
 gem 'pg'
 gem 'omniauth-github'
 gem 'faraday'
+gem 'nokogiri'
 
 
 group :development, :test do

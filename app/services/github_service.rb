@@ -1,3 +1,5 @@
+require "open-uri"
+
 class GithubService
   attr_reader :connection
 
@@ -19,6 +21,10 @@ class GithubService
     parse(connection.get("users/#{@current_user.nickname}/following"))
   end
 
+  def contributions
+    @page = Nokogiri::HTML(open("https://github.com/#{@current_user.nickname}"))
+    @page.xpath("//*[@id='contributions-calendar']/div[3]/span[2]").text
+  end
 
   private
 
