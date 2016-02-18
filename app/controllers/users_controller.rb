@@ -10,5 +10,6 @@ class UsersController < ApplicationController
     @organizations = gs.organizations
     @commits = gs.recent_commits
     @repositories = gs.repositories
+    @following_activity = gs.following_activity
   end
 end
