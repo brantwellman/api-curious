@@ -9,5 +9,6 @@ class UsersController < ApplicationController
     @current_streak = gs.current_streak
     @organizations = gs.organizations
     @commits = gs.recent_commits
+    @repositories = gs.repositories
   end
 end

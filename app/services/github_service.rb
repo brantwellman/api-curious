@@ -51,6 +51,10 @@ class GithubService
     parse(connection.get("users/#{current_user.nickname}/orgs"))
   end
 
+  def repositories
+    parse(connection.get("users/#{current_user.nickname}/repos"))
+  end
+
 
   private
 
