@@ -26,8 +26,6 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-
-
   config.before :each do
     OmniAuth.config.mock_auth[:github] = nil
     OmniAuth.config.test_mode = true

@@ -14,6 +14,11 @@ gem 'faraday'
 gem 'nokogiri'
 gem 'pry'
 
+group :test do
+  gem 'webmock'
+  gem 'vcr'
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
@@ -23,8 +28,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'webmock'
-  gem 'vcr'
 end
 
 group :development do
