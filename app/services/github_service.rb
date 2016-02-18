@@ -69,9 +69,6 @@ class GithubService
     parse(connection.get("users/#{current_user.nickname}/repos"))
   end
 
-
-
-
   private
 
     def parse(response)

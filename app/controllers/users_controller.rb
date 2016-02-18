@@ -11,6 +11,5 @@ class UsersController < ApplicationController
     @commits = gs.recent_commits
     @repositories = gs.repositories
     @following_activity = gs.following_activity
-    # binding.pry
   end
 end
