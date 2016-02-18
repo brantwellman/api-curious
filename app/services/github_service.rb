@@ -37,13 +37,18 @@ class GithubService
   end
 
   def recent_commits
-
+    commit_events = parse(connection.get("/users/#{current_user.nickname}/events")).select do |collection|
+      collection["type"] == "PushEvent"
+    end
+    commit_events.map do |event|
+      event["payload"]["commits"].map do |commit|
+        commit["message"]
+      end
+    end.flatten
   end
 
   def organizations
-    # parse(connection.get("users/#{current_user.nickname}/orgs"))
-    parse(connection.get("users/jcasimir/orgs"))
-    # binding.pry
+    parse(connection.get("users/#{current_user.nickname}/orgs"))
   end
 
 
