@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "user logs in", type: :feature, vcr: true do
 
-  context "user sees dashboard when loggin in" do
+  context "user sees dashboard when logging in" do
     it "can log in" do
       visit "/"
       click_on "Login with Github"

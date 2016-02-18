@@ -84,15 +84,19 @@ describe "GithubService" do
     end
   end
 
-  # context "following activity" do
-  #   it "returns a list of followers and their recent commits" do
-  #     VCR.use_cassette("github_service#following_activity") do
-  #
-  #     end
-  #   end
-  # end
+  context "following activity" do
+    it "returns a list of followers and their recent commits" do
+      VCR.use_cassette("github_service#following_activity") do
+        all_activity = @service.following_activity
+        last_following = all_activity.last
+        commits = last_following[:commits]
 
-  # "parse_commit_messages"
+        expect(all_activity.count).to eq(7)
+        expect(last_following[:nickname]).to eq("danjwinter")
+        expect(commits.first).to eq("add rails 12 factor")
+      end
+    end
+  end
 
   context "organizations" do
     it "returns a list of organizations for the user" do
