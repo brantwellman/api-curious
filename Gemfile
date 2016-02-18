@@ -12,11 +12,10 @@ gem 'pg'
 gem 'omniauth-github'
 gem 'faraday'
 gem 'nokogiri'
-
+gem 'pry'
 
 group :development, :test do
   gem 'byebug'
-  gem 'pry'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
   gem 'launchy'
@@ -24,6 +23,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do
