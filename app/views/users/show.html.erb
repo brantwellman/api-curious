@@ -66,3 +66,10 @@
     <li><%= org["login"] %></li>
   <% end %>
 </ul>
+
+<h3>My Recent Commits</h3>
+<ul>
+  <% @commits.each do |commit| %>
+    <li><%= commit %></li>
+  <% end %>
+</ul>

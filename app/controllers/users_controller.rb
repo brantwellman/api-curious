@@ -8,5 +8,6 @@ class UsersController < ApplicationController
     @longest_streak = gs.longest_streak
     @current_streak = gs.current_streak
     @organizations = gs.organizations
+    @commits = gs.recent_commits
   end
 end
