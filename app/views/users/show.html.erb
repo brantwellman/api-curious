@@ -73,3 +73,10 @@
     <li><%= commit %></li>
   <% end %>
 </ul>
+
+<h3>My Repositories</h3>
+<ul>
+  <% @repositories.each do |repository| %>
+    <li><%= repository["name"] %></li>
+  <% end %>
+</ul>
