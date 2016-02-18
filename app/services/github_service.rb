@@ -14,7 +14,7 @@ class GithubService
   end
 
   def followers
-    parse(connection.get("/users/#{current_user.nickname}/followers", {access_token: current_user.token}))
+    parse(connection.get("/users/#{current_user.nickname}/followers"))
   end
 
   def following
@@ -37,9 +37,23 @@ class GithubService
   end
 
   def recent_commits
-    commit_events = parse(connection.get("/users/#{current_user.nickname}/events")).select do |collection|
-      collection["type"] == "PushEvent"
+    json_obj = parse(connection.get("/users/#{current_user.nickname}/events"))
+    parse_commit_messages(json_obj)
+  end
+
+  def following_activity
+    nicknames = self.following.map do |people|
+      people["login"]
     end
+    nicknames.map do |nickname|
+      json_obj = parse(connection.get("/users/#{nickname}/events"))
+      messages = parse_commit_messages(json_obj)
+      {nickname: nickname, commits: messages[0..4]}
+    end
+  end
+
+  def parse_commit_messages(events)
+    commit_events = events.select { |collection| collection["type"] == "PushEvent" }
     commit_events.map do |event|
       event["payload"]["commits"].map do |commit|
         commit["message"]
@@ -54,6 +68,8 @@ class GithubService
   def repositories
     parse(connection.get("users/#{current_user.nickname}/repos"))
   end
+
+
 
 
   private

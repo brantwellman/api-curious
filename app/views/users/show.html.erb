@@ -80,3 +80,13 @@
     <li><%= repository["name"] %></li>
   <% end %>
 </ul>
+
+<h3>My Followers and their Activity</h3>
+<% @following_activity.each do |messages| %>
+  <%= messages[:nickname] %>
+  <ul>
+    <li><% messages[:commits].each do |message|%>
+          <%= message %>
+    <% end %></li>
+  </ul>
+<% end %>
