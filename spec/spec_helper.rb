@@ -1,5 +1,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
+
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'vcr'
@@ -30,14 +31,14 @@ RSpec.configure do |config|
     OmniAuth.config.mock_auth[:github] = nil
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({ 'provider' => 'github',
-                     'uid' => ENV['BW_UID'],
-                     'credentials' => { 'token' => ENV['TOKEN'] },
-                     'info' => {
-                                'name' => 'Brant Wellman',
-                                'email' => 'brantwellman@gmail.com',
-                                'nickname' => 'brantwellman',
-                                'image' => "https://avatars.githubusercontent.com/u/6422641?v=3"
-                                }
-                     })
+                                                                  'uid' => ENV['BW_UID'],
+                                                                  'credentials' => { 'token' => ENV['TOKEN'] },
+                                                                  'info' => {
+                                                                  'name' => 'Brant Wellman',
+                                                                  'email' => 'brantwellman@gmail.com',
+                                                                  'nickname' => 'brantwellman',
+                                                                  'image' => "https://avatars.githubusercontent.com/u/6422641?v=3"
+                                                                  }
+                                                                  })
   end
 end

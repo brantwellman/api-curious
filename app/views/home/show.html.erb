@@ -2,8 +2,12 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <h1 class="home">Welcome to Github Curious</h1>
-    <h2 class="home">Where I try to figure some stuff out with the Github API</h2>
-    <%= link_to   "Login with Github", "/auth/github", class: "btn btn-lg btn-default btn-home" %>
+    <h2 class="home">Yet Another Place to View Your Github Profile</h2>
+    <% if current_user %>
+      <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-lg btn-default btn-home" %>
+    <% else %>
+      <%= link_to "Login with Github", "/auth/github", class: "btn btn-lg btn-default btn-home" %>
+    <% end %>
   </div>
   <div class="col-md-2"></div>
 </div>
