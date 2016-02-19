@@ -1,92 +1,121 @@
-<div class="container center">
-  <h1><%= current_user.name %>'s' Dashboard</h1>
-</div>
-
-<div class="row">
-  <div class="col-md-3">
-    <ul>
-      <img class="center-block">
-        <%= image_tag current_user.image, class: "gravatar" %>
-      </img>
-      <h3><%= current_user.name %></h3>
-      <h4><%= current_user.nickname %></h4>
-    </ul>
+<div class="background-texture">
+  <div class="container center text-center dashboard-header">
+    <h1><%= current_user.name %>'s' Dashboard</h1>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-2">
-    <h3><%= @user_object.starred.count %> Starred Repos</h3>
+  <div class="row container center">
+
+    <div class="col-md-3 col-md-offset-1">
+      <ul>
+        <img class="center-block">
+          <%= image_tag current_user.image, class: "gravatar" %>
+        </img>
+        <h3><%= current_user.name %></h3>
+        <h4><%= current_user.nickname %></h4>
+      </ul>
+
+      <div class = "row">
+        <div class="col-md-3">
+          <h4><%= @user_object.starred.count %> Starred Repos</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <h4><%= @user_object.followers.count %> total followers</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <h4><%= @user_object.followings.count %> you are following</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav tabs -->
+    <div class="col-md-5 col-md-offset-2">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">My Repositories</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">My Recent Commits</a></li>
+      </ul>
+    <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+          <ul>
+            <% @user_object.repositories.each do |repository| %>
+              <li><%= repository["name"] %></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="profile">
+          <ul>
+            <% @user_object.commits.each do |commit| %>
+              <li><%= commit %></li>
+            <% end %>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="center col-md-offset-2">
+    <div class="col-md-3">
+      <h3><%= @user_object.starred.count %> Starred Repos</h3>
+      <ul>
+        <% @user_object.starred.each do |star| %>
+          <li><%= link_to star["name"], "https://github.com/#{star['owner']['login']}/#{star['name']}" %></li>Created By: <%= star["owner"]['login'] %>
+        <% end %>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <h3><%= @user_object.followers.count %> total followers</h3>
+        <ul>
+          <% @user_object.followers.each do |follower| %>
+            <li><%= link_to follower["login"], "https://github.com/#{follower["login"]}" %> </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h3><%= @user_object.followings.count %> you are following</h3>
+        <ul>
+          <% @user_object.followings.each do |following| %>
+            <li><%= link_to following["login"], "https://github.com/#{following["login"]}" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row center col-md-offset-2">
+    <div class="col-md-2">
+      <h3>Contributions</h3>
+      <%= @user_object.contributions %>
+    </div>
+
+    <div class="col-md-2">
+      <h3>Longest Streak</h3>
+      <%= @user_object.longest_streak %>
+    </div>
+
+    <div class="col-md-2">
+      <h3>Current Streak</h3>
+      <%= @user_object.current_streak %>
+    </div>
+
+    <h3>My Organizations</h3>
     <ul>
-      <% @user_object.starred.each do |star| %>
-        <li><%= link_to star["name"], "https://github.com/#{star['owner']['login']}/#{star['name']}" %></li>Created By: <%= star["owner"]['login'] %>
+      <% @user_object.organizations.each do |org| %>
+        <li><%= org["login"] %></li>
       <% end %>
     </ul>
   </div>
 
-  <div class="col-md-2">
-    <h3><%= @user_object.followers.count %> total followers</h3>
-    <ul>
-      <% @user_object.followers.each do |follower| %>
-        <li><%= link_to follower["login"], "https://github.com/#{follower["login"]}" %> </li>
-      <% end %>
-    </ul>
-  </div>
 
-  <div class="col-md-2">
-    <h3><%= @user_object.followings.count %> you are following</h3>
-    <ul>
-      <% @user_object.followings.each do |following| %>
-        <li><%= link_to following["login"], "https://github.com/#{following["login"]}" %></li>
-      <% end %>
-    </ul>
-  </div>
+
+  <%= link_to "People I'm Following", following_path %>
+
 </div>
-
-<div class="row">
-  <div class="col-md-2">
-    <h3>Contributions</h3>
-    <%= @user_object.contributions %>
-  </div>
-
-  <div class="col-md-2">
-    <h3>Longest Streak</h3>
-    <%= @user_object.longest_streak %>
-  </div>
-
-  <div class="col-md-2">
-    <h3>Current Streak</h3>
-    <%= @user_object.current_streak %>
-  </div>
-</div>
-
-<h3>My Organizations</h3>
-<ul>
-  <% @user_object.organizations.each do |org| %>
-    <li><%= org["login"] %></li>
-  <% end %>
-</ul>
-
-<h3>My Recent Commits</h3>
-<ul>
-  <% @user_object.commits.each do |commit| %>
-    <li><%= commit %></li>
-  <% end %>
-</ul>
-
-<h3>My Repositories</h3>
-<ul>
-  <% @user_object.repositories.each do |repository| %>
-    <li><%= repository["name"] %></li>
-  <% end %>
-</ul>
-
-<h3>Those I'm following and their Activity</h3>
-<% @user_object.following_activity.each do |messages| %>
-  <%= messages[:nickname] %>
-  <ul>
-    <li><% messages[:commits].each do |message|%>
-          <%= message %></br>
-    <% end %></li>
-  </ul>
-<% end %>

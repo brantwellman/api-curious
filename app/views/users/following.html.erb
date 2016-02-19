@@ -1,0 +1,11 @@
+<div class="background-texture">
+  <h3>Those I'm following and their Activity</h3>
+  <% @following_activity.each do |messages| %>
+  <%= messages[:nickname] %>
+  <ul>
+    <li><% messages[:commits].each do |message|%>
+      <%= message %></br>
+      <% end %></li>
+    </ul>
+    <% end %>
+</div>
