@@ -44,6 +44,10 @@
   font-size: 100;
 }
 
+.dumb-h3 h3 {
+  margin-top: 0px;
+}
+
 h1.home {
   font-size: 60px;
   font-weight: 400;
@@ -70,12 +74,16 @@ a.btn.btn-lg.btn-default.btn-home:hover {
 }
 
 .dashboard-header {
-  margin-top: 30px;
   margin-bottom: 50px;
 }
 
 .background-texture {
-  background: url('/assets/paper_fibers.png');
+  background: url('/assets/paper_fibers.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .background-image {
